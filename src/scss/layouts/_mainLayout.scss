@@ -1,0 +1,30 @@
+@use '../base';
+
+.wrapper {
+    background-image: url("../../assets/background-stars.svg");
+    background-color: base.$dark-blue;
+    background-repeat: no-repeat;
+    color: base.$white;
+    font-family: base.$main-font;
+    max-width: 1480px;
+    margin: auto;
+}
+
+.main {
+    padding: .4rem 1.5rem 3rem;
+}
+
+.modal__scroll {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+@media screen and (min-width: 680px) {
+    .modal__scroll {
+        min-height: 100vh;
+        overflow-y: scroll;
+    }
+    .main {
+        padding: .4rem 2.5rem 3rem;
+    }
+}

@@ -1,0 +1,156 @@
+@use "../base";
+@use "../mixins";
+@use "sass:color";
+
+.tab__list {
+    position: relative;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: calc(100% + 3rem);
+        left: -1.5rem;
+        height: 1px;
+        background-color: base.$white;
+        opacity: 0.5;
+    }
+
+    &::before {
+        top: -1rem;
+    }
+
+    &::after {
+        bottom: -1rem;
+    }
+}
+
+.tab__item--btn {
+    font-size: 0.5625rem;
+    // color: base.$white;
+    color: lighten(base.$white, 10%);
+    position: relative;
+    text-decoration: none;
+    opacity: 0.5;
+    outline: none;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        outline: dashed currentColor;
+        outline-offset: 0.25em;
+        // background-color: #D8D8D8;
+    }
+}
+
+[role="tablist"] [aria-selected]::after {
+    /* content: '\0020⬅'; */
+    content: "";
+    width: 100%;
+    height: .3rem;
+    /* background-color: base.$mercury; */
+    position: absolute;
+    left: 0;
+    bottom: -1.2rem;
+    opacity: 1;
+
+}
+
+[role="tablist"] {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+    flex-wrap: no-wrap;
+    gap: 1rem;
+}
+
+
+[role="tabpanel"] {
+    border-top: 0;
+}
+
+.tab__number {
+    display: none;
+}
+
+.tab__item__hide {
+    position: relative;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; /* added line */
+    border: 0;
+    display: none;
+}
+
+@media screen and (min-width: 680px) {
+
+    .tab__list {
+        flex-direction: column;
+        min-width: 281px;
+        gap: 1rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        &::before,
+        &::after {
+            width: 0;
+            height: 0;
+        }
+    }
+
+    .tab__list__item {
+        border: 1px solid white;
+    }
+
+    .tab__item--btn {
+        width: 100%;
+        display: inline-block;
+        letter-spacing: 2px;
+        line-height: 1.5;
+
+        &:hover,
+        &:focus {
+            background-color: #D8D8D8;
+        }
+    }
+
+    [role="tablist"] a {
+        text-decoration: none;
+        padding: 1rem 1em;
+    }
+
+    [role="tablist"] [aria-selected]::after {
+        opacity: 0;
+    }
+
+    [role="tablist"] [aria-selected] {
+        top: 0;
+        background-color: base.$earth;
+        opacity: 1;
+    }
+
+
+    [role="tabpanel"] *+* {
+        margin-top: 0.75rem;
+    }
+
+    .tab__number, .tab__item__hide  {
+        display: inline;
+    }    
+
+
+}
+
+@media screen and (min-width: 1080px) {
+    .tab__item--btn {        
+        font-size: 0.75rem;
+    }
+}
